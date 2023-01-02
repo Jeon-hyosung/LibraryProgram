@@ -46,7 +46,7 @@ public class BookView {
 		System.out.print(", 대여자 : " + book.getBookLender());
 		System.out.println(", 반납기한 : " + book.getReturnDate());
 	}
-	public Book inputBook() {
+	public Book addBook() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("=== === === 도서 정보 입력 === ==== ===");
 		System.out.print("도서 제목 : ");

@@ -19,7 +19,7 @@ public class BookDAO {
 	private final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
 	
 	public List<Book> selectAll() {
-		String sql = "SELECT * FROM BOOK_TBL";
+		String sql = "SELECT * FROM BOOK_TBL ORDER BY BOOK_NO";
 		Book book = null;
 		List<Book> bList = null;
 		try {
@@ -106,20 +106,18 @@ public class BookDAO {
 	}
 	
 	public int insertBook(Book book) {
-		String sql = "INSERT INTO BOOK_TBL VALUES(?,?,?)";
+		String sql = "INSERT INTO BOOK_TBL VALUES(SEQ_BOOK_NO.NEXTVAL,?,?,?,DEFAULT,'대여가능',NULL,NULL)";
 		int result = 0;
 		try {
 			Class.forName(DRIVER_NAME);
 			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			//pstmt.setInt(1, "SEQ_BOOK_NO");
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getAuthor());
 			pstmt.setString(3, book.getGenre());
-			//pstmt.setDate(5, "DEFAULT");
-			//pstmt.setString(6, "NULL");
-			//pstmt.setString(7, "NULL");
-			//pstmt.setDate(8, "SYSDATE + 7");
+//			pstmt.setString(5, "NULL");
+//			pstmt.setString(6, "NULL");
+//			pstmt.setDate(7, "SYSDATE + 7");
 			result = pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();

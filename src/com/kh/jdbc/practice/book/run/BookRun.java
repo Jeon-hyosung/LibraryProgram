@@ -21,18 +21,18 @@ public class BookRun {
 			int choice = bView.mainMenu();
 			switch(choice) {
 			case 1:
-				// 전체 조회
+				// 전체 조회 완
 				bList = bCon.printAll();
 				bView.showBookInfo(bList, "전체 도서");
 				break;
 			case 2:
-				//도서 번호로 조회
+				//도서 번호로 조회 완
 				bookNo = bView.printInputNo("조회");
 				book = bCon.selectByNo(bookNo);
 				bView.showOneBook(book);
 				break;
 			case 3:
-				//도서 제목으로 조회
+				//도서 제목으로 조회 완
 				bList = bCon.selectByName(bookName);
 				bookName = bView.printInputName();
 				if(!bList.isEmpty()) {
@@ -43,8 +43,8 @@ public class BookRun {
 				}
 				break;
 			case 4:
-				//도서 등록
-				book = bView.inputBook();
+				//도서 등록 완
+				book = bView.addBook();
 				result = bCon.registerBook(book);
 				if(result > 0) {
 					bView.printMessage("도서 등록 성공");
@@ -54,6 +54,7 @@ public class BookRun {
 				}
 				break;
 			case 5:
+				//도서 삭제 완
 				bookNo = bView.printInputNo("삭제");
 				result = bCon.removeBook(bookNo);
 				if(result > 0) {
@@ -64,6 +65,7 @@ public class BookRun {
 				}
 				break;
 			case 6:
+				// 도서 대여 미완
 				bookNo = bView.printInputNo("대여");
 				book = bCon.selectByNo(bookNo);
 				if(book != null) {
